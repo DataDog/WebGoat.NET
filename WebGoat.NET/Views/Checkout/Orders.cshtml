@@ -1,0 +1,41 @@
+@model IEnumerable<WebGoat.NET.Models.Order>
+
+@{
+    ViewData["Title"] = "Your Orders";
+}
+
+<div class="container mt-5">
+    <h2>@ViewData["Title"]</h2>
+    @if (!Model.Any())
+    {
+        <p>You have no orders.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Tracking Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                    <td>@order.Status</td>
+                    <td>@order.TrackingNumber</td>
+                    <td>
+                        <a asp-action="TracePackage" asp-controller="Checkout" asp-route-shippingProvider="@order.ShippingProvider" asp-route-trackingNumber="@order.TrackingNumber" class="btn btn-primary">Trace Package</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>

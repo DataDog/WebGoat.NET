@@ -1,0 +1,22 @@
+@model WebGoat.NET.ViewModels.TracePackageViewModel
+
+@{
+    ViewData["Title"] = "Trace Package";
+}
+
+<div class="container mt-5">
+    <h2>Trace Your Package</h2>
+    <form method="post" class="mt-4">
+        <div class="form-group mb-3">
+            <label for="trackingNumber">Tracking Number</label>
+            <input type="text" class="form-control" id="trackingNumber" name="TrackingNumber" value="@Model.TrackingNumber" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="shippingProvider">Shipping Provider</label>
+            <input type="text" class="form-control" id="shippingProvider" name="ShippingProvider" value="@Model.ShippingProvider" required />
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Trace Package</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+@model WebGoat.NET.ViewModels.ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-5">
+    <div class="card mb-3" style="max-width: 800px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="/img/products/@(Model.Product.Id).jpeg" class="img-fluid rounded-start" alt="@Model.Product.Name" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Product.Name</h5>
+                    <p class="card-text">@Model.Product.Description</p>
+                    <p class="card-text"><strong>Price:</strong> @Model.Product.Price.ToString("C")</p>
+                    <form asp-action="UpdateCart" asp-controller="Cart" method="post" class="d-flex align-items-center">
+                        <input type="hidden" name="productId" value="@Model.Product.Id" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <input type="hidden" name="action" value="increase" />
+                        <button type="submit" class="btn btn-success">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back to Home</a>
+</div>

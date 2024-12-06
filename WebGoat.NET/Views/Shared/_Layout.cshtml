@@ -4,16 +4,59 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - WebGoat.NET</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/WebGoat.NET.styles.css" asp-append-version="true"/>
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            resize: horizontal;
+            overflow: auto;
+        }
+        .resizer {
+            width: 5px;
+            height: 100%;
+            background: #ddd;
+            cursor: ew-resize;
+            position: absolute;
+            top: 0;
+            left: -5px;
+        }
+        .resizer-button {
+            position: fixed;
+            top: 50%;
+            right: 250px; /* Adjust based on initial sidebar width */
+            transform: translate(70%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: #ddd;
+            border: 2px solid #333;
+            border-radius: 50%;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000; /* Ensure the button is above other elements */
+        }
+        .resizer-button::before {
+            content: '⇔';
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">WebGoat.NET</a>
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home">WebGoat.NET</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,10 +64,13 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home">Home</a>
+                        <a class="nav-link text-dark" asp-action="Index" asp-controller="Home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Privacy">Privacy</a>
+                        <a class="nav-link text-dark" asp-action="Index" asp-route-id="" asp-controller="Blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-action="Index" asp-controller="Privacy">Privacy</a>
                     </li>
                 </ul>
                 <partial name="_LoginPartial"/>
@@ -32,21 +78,81 @@
         </div>
     </nav>
 </header>
-<div class="container">
+<div class="container content" style="margin-bottom: 60px">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
 
+<div class="sidebar" id="sidebar">
+    <div class="resizer" id="resizer"></div>
+    <partial name="_DatadogInstruction"/>
+    
+</div>
+
+<div class="resizer-button" id="resizer-button"></div>
+
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2024 - WebGoat.NET (Datadog Version) - <a asp-area="" asp-controller="Privacy">Privacy</a>
+        &copy; 2024 - WebGoat.NET (Datadog Version) - <a asp-action="Index" asp-controller="Privacy">Privacy</a>
     </div>
 </footer>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    const resizer = document.getElementById('resizer');
+    const resizerButton = document.getElementById('resizer-button');
+    const sidebar = document.getElementById('sidebar');
+    let isResizing = false;
+
+    // Load saved sidebar width and scroll position
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedWidth = localStorage.getItem('sidebarWidth');
+        const savedScrollTop = localStorage.getItem('sidebarScrollTop');
+        if (savedWidth) {
+            sidebar.style.width = savedWidth;
+            resizerButton.style.right = (parseInt(savedWidth) + 5) + 'px';
+        }
+        if (savedScrollTop) {
+            sidebar.scrollTop = savedScrollTop;
+        }
+    });
+
+    resizer.addEventListener('mousedown', function(e) {
+        isResizing = true;
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
+    });
+
+    resizerButton.addEventListener('mousedown', function(e) {
+        isResizing = true;
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
+    });
+
+    function resize(e) {
+        if (isResizing) {
+            const newWidth = window.innerWidth - e.clientX;
+            sidebar.style.width = newWidth + 'px';
+            resizerButton.style.right = (newWidth + 5) + 'px';
+        }
+    }
+
+    function stopResize() {
+        isResizing = false;
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener('mouseup', stopResize);
+        // Save the sidebar width
+        localStorage.setItem('sidebarWidth', sidebar.style.width);
+    }
+
+    // Save the scroll position
+    sidebar.addEventListener('scroll', function() {
+        localStorage.setItem('sidebarScrollTop', sidebar.scrollTop);
+    });
+</script>
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>

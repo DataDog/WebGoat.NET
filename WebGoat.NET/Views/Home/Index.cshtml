@@ -1,14 +1,84 @@
 @model WebGoat.NET.ViewModels.HomeViewModel
+@inject WebGoat.NET.Data.ProductRepository ProductRepository
+
+@{
+    ViewData["Title"] = "Shop";
+}
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>title</title>
+    <title>Welcome to WebGoat.NET Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div>
-    @Model.Message
+<!-- Banner Section -->
+<!-- Banner Section -->
+<div class="jumbotron text-center text-white" style="border-radius: 25px; padding: 50px; background: rgb(92 137 204); background-size: cover;">
+    <h1 style="font-size: 3.5rem; font-weight: bold;">Welcome to WebGoat.NET Shop</h1>
+    <p style="font-size: 1.5rem; margin-top: 20px;">Discover amazing products at unbeatable prices!</p>
+    <a href="/" class="btn btn-lg btn-warning mt-3" style="font-size: 1.25rem;">Start Shopping</a>
+    <a href="/Blog" class="btn btn-lg btn-info mt-3" style="font-size: 1.25rem;">Read our Blog</a>
+</div>
+
+<!-- Featured Products Grid -->
+<div class="container mt-5">
+    <h2>Featured Products</h2>
+    <div class="row">
+        @foreach (var product in ProductRepository.GetFeaturedProducts())
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <img src="/img/products/@(product.Id).jpeg" class="card-img-top" alt="@product.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>@product.Price.ToString("C")</strong></p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" asp-controller="ProductDetails" asp-route-id="@product.Id" class="btn btn-primary">View Details</a>
+                            <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="hidden" name="action" value="increase" />
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- All Products Grid -->
+<div class="container mt-5">
+    <h2>All Products</h2>
+    <div class="row">
+        @foreach (var product in ProductRepository.GetProducts())
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <img src="/img/products/@(product.Id).jpeg" class="card-img-top" alt="@product.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>@product.Price.ToString("C")</strong></p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" asp-controller="ProductDetails" asp-route-id="@product.Id" class="btn btn-primary">View Details</a>
+                            <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="hidden" name="action" value="increase" />
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 </body>
 </html>

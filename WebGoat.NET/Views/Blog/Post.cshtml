@@ -1,0 +1,35 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = Model.Post.Title;
+}
+
+<div class="container mt-5">
+    <h2>@Model.Post.Title</h2>
+    <p class="text-muted">By @Model.Post.AuthorName on @Model.Post.CreatedAt.ToString("yyyy-MM-dd")</p>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p>@Html.Raw(Model.Post.Content)</p>
+        </div>
+    </div>
+
+    <h3>Comments</h3>
+    <div class="list-group">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="list-group-item">
+                <p>@Html.Raw(@comment.Content)</p>
+                <p class="text-muted"><small>By @comment.AuthorName on @comment.CreatedAt.ToString("yyyy-MM-dd")</small></p>
+            </div>
+        }
+    </div>
+
+    <form asp-action="Comment" method="post" class="mt-4">
+        <input type="hidden" name="postId" value="@Model.Post.Id" />
+        <div class="form-group">
+            <label for="comment">Add a comment</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+</div>
