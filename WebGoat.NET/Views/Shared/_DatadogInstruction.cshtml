@@ -1,2 +1,72 @@
 <h4>Datadog Instruction</h4>
-<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilies. This guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
+<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilities. This guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
+<p>If your application is correctly instrumented with the <a target="_blank" href="https://docs.datadoghq.com/en/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core/?tab=windows">Datadog .NET Tracer</a>, connected to a <a target="_blank" href="https://docs.datadoghq.com/agent">Datadog Agent</a> and <a target="_blank" href="https://docs.datadoghq.com/fr/security/application_security/code_security/">Code Security</a> enabled, you should see all detected vulnerabilities in the <a target="_blank" href="https://app.datadoghq.com/security/appsec/vm/library?column=score&detection=runtime&order=desc">Vulns Explorer</a>.</p>
+<style>
+    summary {
+        margin-bottom: 10px;
+    }
+    
+    summary>h5 {
+        display: contents;
+    }
+    
+    details {
+        margin-bottom: 20px;
+    }
+</style>
+
+<details>
+    <summary><h5>SQL Injection</h5></summary>
+    <p>To reproduce the SQL Injection vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/">Shop</a> and add some item to the Cart.</li>
+        <li>Check the <a href="/Cart">Cart</a>, <b>Checkout</b> and place an order.</li>
+    </ol>
+    <p>In the code, the SQL query isn't properly sanitized, allowing an attacker to inject SQL code in the input fields.</p>
+</details>
+
+<details>
+    <summary><h5>XSS</h5></summary>
+    <p>To reproduce the XSS vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/Blog">Blog</a> page.</li>
+    </ol>
+    <p>At this stage, you can see some blog posts and some associated comments. If you take look at the comments, you can see that the comments are stylized.</p>
+    <ol>
+        <li>Read an <a href="/Blog">article</a>. Scroll down to the end of the article.</li>
+        <li>Write a comment and submit it.</li>
+    </ol>
+    <p>When the comment is displayed, the comment is not sanitized, allowing an attacker to inject JavaScript code in the comment.</p>
+</details>
+
+<details>
+    <summary><h5>X-Content-Type-Options Header missing</h5></summary>
+    <p>No <b>X-Content-Type-Options</b> Header are sent in the server response. This vulnerability is present in every page.</p>
+</details>
+
+<details>
+    <summary><h5>Session Timeout</h5></summary>
+    <p>The <a target="_blank" href="https://owasp.org/www-community/Session_Timeout">session timeout</a> for this application is set to 120 minutes and should be lower than 30 minutes. This vulnerability is triggered at the startup of the application.</p>
+</details>
+
+<details>
+    <summary><h5>Directory Listing Leakage</h5></summary>
+    <p>Directory Listing Leakage is a vulnerability that allows an attacker to see the content of a directory. This vulnerability is triggered because of a misconfiguration in the server.</p>
+    <p>You can see when visiting the <a href="/debug" target="_blank">/debug</a> page, that the content of the directory is displayed.</p>
+</details>
+
+<details>
+    <summary><h5>Stacktrace Leak</h5></summary>
+    <p>Stacktrace Leak is a vulnerability that allows an attacker to see the stacktrace of an exception. This vulnerability is triggered because of a misconfiguration in the server.</p>
+    <p>You can see when visiting a non-existing article <a href="/Blog/30">/Blog/30</a>, the developer badly do checks for the id, and a stacktrace of the exception is displayed.</p>
+</details>
+
+// Header Injection
+
+// Reflection Injection
+<details>
+    <summary><h5>Reflection Injection</h5></summary>
+    <p>Reflection Injection is a vulnerability that allows an attacker to inject code in the application.</p>
+    <p>This vulnerability is triggered when visiting the <a href="/Report">/Report</a> page and requesting a report.</p>
+    <p>When the report is generated, the application is using reflection to call a method based on the user input. The user input is not sanitized, allowing an attacker to inject code.</p>
+</details>

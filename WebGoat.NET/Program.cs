@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using WebGoat.NET.Controllers;
 using WebGoat.NET.Data;
 
@@ -51,6 +52,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseDirectoryBrowser(new DirectoryBrowserOptions
+{
+    RequestPath = "/debug",
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory()))
+});
 
 app.UseRouting();
 

@@ -16,11 +16,6 @@ public class BlogController(BlogRepository blogRepository) : Controller
     public IActionResult Index(int id)
     {
         var post = blogRepository.GetPostById(id);
-        if (post is null)
-        {
-            return RedirectToAction("Index");
-        }
-        
         return View("Post", new { Post = post, Comments = blogRepository.GetCommentsForPost(id, null) });
     }
     
