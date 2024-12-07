@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebGoat.NET.Controllers;
 
-[AllowAnonymous]
-[Route("/[controller]")]
-public class PrivacyController : Controller
+public class AdminController : Controller
 {
+    [Authorize(AuthenticationSchemes = "BasicAuthentication")]
     public IActionResult Index()
     {
         return View();

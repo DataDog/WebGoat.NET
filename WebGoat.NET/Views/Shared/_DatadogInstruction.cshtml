@@ -130,3 +130,36 @@
         and displayed in the shop. An attacker could bypass the security mechanism by changing the company name in the
         session.</p>
 </details>
+
+<details>
+    <summary><h5>Email HTML Injection</h5></summary>
+    <p>HTML email injection is a vulnerability where user input is included in the content of an email without proper validation and sanitization.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/About">About</a> page.</li>
+        <li>Write a suggestion in the form and submit it.</li>
+    </ol>
+    <p>When the email is sent, the user input is not sanitized, allowing an attacker to inject HTML code in the email.</p>
+</details>
+
+<details>
+    <summary><h5>Insecure Auth Protocol</h5></summary>
+    <p>The application uses an authentication protocol that is not considered secure.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/Admin">Admin panel</a> page.</li>
+        <li>Login with the following credentials: <b>admin</b> / <b>5f4dcc3b5aa765d61d8327deb882cf99</b></li>
+    </ol>
+    <p>The application is using the Basic Auth protocol, which is not secure. The credentials are sent in clear text over the network.</p>
+</details>
+
+<details>
+    <summary><h5>Weak Hash</h5></summary>
+    <p>Using weak hashing algorithms (e.g. MD5) can lead to many types of attacks, such as broken authentication or private data leaks.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/Admin">Admin panel</a> page.</li>
+        <li>Login with the following credentials: <b>admin</b> / <b>5f4dcc3b5aa765d61d8327deb882cf99</b></li>
+    </ol>
+    <p>The application is using the MD5 hashing algorithm to hash the password. MD5 is considered weak and can be easily cracked.</p>
+</details>

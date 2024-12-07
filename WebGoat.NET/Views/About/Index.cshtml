@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container mt-5">
+    <h2>@ViewData["Title"]</h2>
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>About Our Shop</h3>
+        </div>
+        <div class="card-body">
+            <p>Welcome to WebGoat.NET Shop! We offer a wide range of products at unbeatable prices. Our mission is to provide the best shopping experience for our customers. Whether you are looking for the latest gadgets, fashion items, or home essentials, we have it all.</p>
+            <p>Our team is dedicated to ensuring that you have a seamless shopping experience. We constantly update our inventory to bring you the latest and greatest products. Thank you for choosing WebGoat.NET Shop!</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3>Contact Us</h3>
+        </div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="card-body">
+            <form asp-action="SendSuggestion" method="post">
+                <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="suggestion">Suggestion</label>
+                    <textarea class="form-control" id="suggestion" name="suggestion" rows="4" required></textarea>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Send Suggestion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
