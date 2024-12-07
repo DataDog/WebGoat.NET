@@ -1,15 +1,22 @@
 <h4>Datadog Instruction</h4>
-<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilities. This guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
-<p>If your application is correctly instrumented with the <a target="_blank" href="https://docs.datadoghq.com/en/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core/?tab=windows">Datadog .NET Tracer</a>, connected to a <a target="_blank" href="https://docs.datadoghq.com/agent">Datadog Agent</a> and <a target="_blank" href="https://docs.datadoghq.com/fr/security/application_security/code_security/">Code Security</a> enabled, you should see all detected vulnerabilities in the <a target="_blank" href="https://app.datadoghq.com/security/appsec/vm/library?column=score&detection=runtime&order=desc">Vulns Explorer</a>.</p>
+<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilities. This
+    guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
+<p>If your application is correctly instrumented with the <a target="_blank"
+                                                             href="https://docs.datadoghq.com/en/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core/?tab=windows">Datadog
+        .NET Tracer</a>, connected to a <a target="_blank" href="https://docs.datadoghq.com/agent">Datadog Agent</a> and
+    <a target="_blank" href="https://docs.datadoghq.com/fr/security/application_security/code_security/">Code
+        Security</a> enabled, you should see all detected vulnerabilities in the <a target="_blank"
+                                                                                    href="https://app.datadoghq.com/security/appsec/vm/library?column=score&detection=runtime&order=desc">Vulns
+        Explorer</a>.</p>
 <style>
     summary {
         margin-bottom: 10px;
     }
-    
-    summary>h5 {
+
+    summary > h5 {
         display: contents;
     }
-    
+
     details {
         margin-bottom: 20px;
     }
@@ -20,9 +27,10 @@
     <p>To reproduce the SQL Injection vulnerability:</p>
     <ol>
         <li>Visit the <a href="/">Shop</a> and add some item to the Cart.</li>
-        <li>Check the <a href="/Cart">Cart</a>, <b>Checkout</b> and place an order.</li>
+        <li>Check the <a href="/Cart">Cart</a>, click on <b>Checkout</b> and <b>Place an order</b>.</li>
     </ol>
-    <p>In the code, the SQL query isn't properly sanitized, allowing an attacker to inject SQL code in the input fields.</p>
+    <p>In the code, the SQL query isn't properly sanitized, allowing an attacker to inject SQL code in the input
+        fields.</p>
 </details>
 
 <details>
@@ -31,42 +39,94 @@
     <ol>
         <li>Visit the <a href="/Blog">Blog</a> page.</li>
     </ol>
-    <p>At this stage, you can see some blog posts and some associated comments. If you take look at the comments, you can see that the comments are stylized.</p>
+    <p>At this stage, you can see some blog posts and some associated comments. If you take look at the comments, you
+        can see that the comments are stylized.</p>
     <ol>
         <li>Read an <a href="/Blog">article</a>. Scroll down to the end of the article.</li>
         <li>Write a comment and submit it.</li>
     </ol>
-    <p>When the comment is displayed, the comment is not sanitized, allowing an attacker to inject JavaScript code in the comment.</p>
+    <p>When the comment is displayed, the comment is not sanitized, allowing an attacker to inject JavaScript code in
+        the comment.</p>
 </details>
 
 <details>
     <summary><h5>X-Content-Type-Options Header missing</h5></summary>
-    <p>No <b>X-Content-Type-Options</b> Header are sent in the server response. This vulnerability is present in every page.</p>
+    <p>No <b>X-Content-Type-Options</b> Header are sent in the server response. This vulnerability is present in every
+        page.</p>
 </details>
 
 <details>
     <summary><h5>Session Timeout</h5></summary>
-    <p>The <a target="_blank" href="https://owasp.org/www-community/Session_Timeout">session timeout</a> for this application is set to 120 minutes and should be lower than 30 minutes. This vulnerability is triggered at the startup of the application.</p>
+    <p>The <a target="_blank" href="https://owasp.org/www-community/Session_Timeout">session timeout</a> for this
+        application is set to 120 minutes and should be lower than 30 minutes. This vulnerability is triggered at the
+        startup of the application.</p>
 </details>
 
 <details>
     <summary><h5>Directory Listing Leakage</h5></summary>
-    <p>Directory Listing Leakage is a vulnerability that allows an attacker to see the content of a directory. This vulnerability is triggered because of a misconfiguration in the server.</p>
-    <p>You can see when visiting the <a href="/debug" target="_blank">/debug</a> page, that the content of the directory is displayed.</p>
+    <p>Directory Listing Leakage is a vulnerability that allows an attacker to see the content of a directory. This
+        vulnerability is triggered because of a misconfiguration in the server.</p>
+    <p>You can see when visiting the <a href="/debug" target="_blank">/debug</a> page, that the content of the directory
+        is displayed.</p>
 </details>
 
 <details>
     <summary><h5>Stacktrace Leak</h5></summary>
-    <p>Stacktrace Leak is a vulnerability that allows an attacker to see the stacktrace of an exception. This vulnerability is triggered because of a misconfiguration in the server.</p>
-    <p>You can see when visiting a non-existing article <a href="/Blog/30">/Blog/30</a>, the developer badly do checks for the id, and a stacktrace of the exception is displayed.</p>
+    <p>Stacktrace Leak is a vulnerability that allows an attacker to see the stacktrace of an exception. This
+        vulnerability is triggered because of a misconfiguration in the server.</p>
+    <p>You can see when visiting a non-existing article <a href="/Blog/30">/Blog/30</a>, the developer badly do checks
+        for the id, and a stacktrace of the exception is displayed.</p>
 </details>
 
-// Header Injection
-
-// Reflection Injection
 <details>
     <summary><h5>Reflection Injection</h5></summary>
     <p>Reflection Injection is a vulnerability that allows an attacker to inject code in the application.</p>
     <p>This vulnerability is triggered when visiting the <a href="/Report">/Report</a> page and requesting a report.</p>
-    <p>When the report is generated, the application is using reflection to call a method based on the user input. The user input is not sanitized, allowing an attacker to inject code.</p>
+    <p>When the report is generated, the application is using reflection to call a method based on the user input. The
+        user input is not sanitized, allowing an attacker to inject code.</p>
+</details>
+
+<details>
+    <summary><h5>Path Traversal</h5></summary>
+    <p>Path Traversal is a vulnerability that allows an attacker to access files on the server.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/Report">Report</a> page. This page let you generate report of all your orders made on
+            the shop.
+        </li>
+        <li>Fill the form and submit it.</li>
+        <li>Go back to the <a href="/Report">Report</a> page, you will see the newly generated report. Click on
+            <b>View</b></li>
+    </ol>
+    <p>The report will be opened. Pay attention to the url. The url access the file directly on the server. An attacker
+        could use this to access sensitive files.</p>
+</details>
+
+<details>
+    <summary><h5>Unvalidated Redirect</h5></summary>
+    <p>Unvalidated Redirect is a vulnerability that allows an attacker to redirect the user to a malicious website.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Visit the <a href="/">Shop</a> and add some item to the Cart.</li>
+        <li>Check the <a href="/Cart">Cart</a>, click on <b>Checkout</b> and <b>Place an order</b>.</li>
+        <li>In the <a href="/Checkout/Orders">Orders list</a> page, click on the <b>Trace Package</b> button.</li>
+        <li>In the Trace Package form, replace the Shipping Provider url by any website like <b>https://example.com</b>
+            and submit the form.</li>
+    </ol>
+    <p>You will be redirected to the malicious website.</p>
+</details>
+
+<details>
+    <summary><h5>Trust Boundary Violation</h5></summary>
+    <p>Trust Boundary Violation is a vulnerability that allows an attacker to bypass the security mechanism of the
+        application.</p>
+    <p>To reproduce the vulnerability:</p>
+    <ol>
+        <li>Create an account/Login to the <a href="/Account">Account</a> page.</li>
+        <li>Be sure to enter a company name in the form.</li>
+        <li>Visit the <a href="/">Shop</a> home page.</li>
+    </ol>
+    <p>When you visit the shop, you can see that the company name is displayed. The company name is stored in the session
+        and displayed in the shop. An attacker could bypass the security mechanism by changing the company name in the
+        session.</p>
 </details>

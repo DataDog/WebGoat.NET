@@ -2,6 +2,10 @@
 @inject WebGoat.NET.Data.ProductRepository ProductRepository
 
 @{
+    var HttpContext = Context.Request.HttpContext;
+}
+
+@{
     ViewData["Title"] = "Shop";
 }
 
@@ -22,6 +26,14 @@
     <a href="/" class="btn btn-lg btn-warning mt-3" style="font-size: 1.25rem;">Start Shopping</a>
     <a href="/Blog" class="btn btn-lg btn-info mt-3" style="font-size: 1.25rem;">Read our Blog</a>
 </div>
+
+@if (User.Identity is not null && User.Identity.IsAuthenticated)
+{
+    <div class="container mt-5">
+        <h2>Welcome, @User.Identity.Name!</h2>
+        <p>Start now to shop for your lovely company <strong>@Context.Request.HttpContext.Session.GetString("CompanyName")</strong>.</p>
+    </div>
+}
 
 <!-- Featured Products Grid -->
 <div class="container mt-5">

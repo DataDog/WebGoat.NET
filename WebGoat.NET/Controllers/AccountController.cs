@@ -59,6 +59,10 @@ public class AccountController(UserManager<IdentityUser> userManager, SignInMana
                 customerRepository.CreateUser(user, model.Email, model.FirstName, model.LastName, model.CompanyName, model.Address, model.City, model.Country, model.PostalCode);
 
                 await signInManager.SignInAsync(user, isPersistent: false);
+                
+                // Facilitate the get of the user's company name to not fetch it from the database every time
+                HttpContext.Session.SetString("CompanyName", model.CompanyName);
+                
                 return RedirectToAction("Index", "Home");
             }
             foreach (var error in result.Errors)
@@ -84,6 +88,10 @@ public class AccountController(UserManager<IdentityUser> userManager, SignInMana
             var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
+                // Facilitate the get of the user's company name to not fetch it from the database every time
+                var customer = customerRepository.GetCurrentCustomer(User);
+                HttpContext.Session.SetString("CompanyName", customer!.CompanyName);
+
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
