@@ -1,13 +1,18 @@
-<h4>Datadog Instruction</h4>
-<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilities. This
-    guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
-<p>If your application is correctly instrumented with the <a target="_blank"
-                                                             href="https://docs.datadoghq.com/en/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core/?tab=windows">Datadog
-        .NET Tracer</a>, connected to a <a target="_blank" href="https://docs.datadoghq.com/agent">Datadog Agent</a> and
-    <a target="_blank" href="https://docs.datadoghq.com/fr/security/application_security/code_security/">Code
-        Security</a> enabled, you should see all detected vulnerabilities in the <a target="_blank"
-                                                                                    href="https://app.datadoghq.com/security/appsec/vm/library?column=score&detection=runtime&order=desc">Vulns
-        Explorer</a>.</p>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const details = document.querySelectorAll('details');
+        details.forEach(function(detail, index) {
+            const isOpen = localStorage.getItem('detail-' + index);
+            if (isOpen === 'true') {
+                detail.setAttribute('open', 'open');
+            }
+            detail.addEventListener('toggle', function() {
+                localStorage.setItem('detail-' + index, detail.hasAttribute('open'));
+            });
+        });
+    });
+</script>
+
 <style>
     summary {
         margin-bottom: 10px;
@@ -21,6 +26,17 @@
         margin-bottom: 20px;
     }
 </style>
+
+<h4>Datadog Instruction</h4>
+<p>Welcome to the vulnerable WebGoat.NET application! This application is implementing a bunch of vulnerabilities. This
+    guide will walk you through the steps to discover all vulnerabilities implemented and how to trigger them.</p>
+<p>If your application is correctly instrumented with the <a target="_blank"
+                                                             href="https://docs.datadoghq.com/en/tracing/trace_collection/automatic_instrumentation/dd_libraries/dotnet-core/?tab=windows">Datadog
+        .NET Tracer</a>, connected to a <a target="_blank" href="https://docs.datadoghq.com/agent">Datadog Agent</a> and
+    <a target="_blank" href="https://docs.datadoghq.com/fr/security/application_security/code_security/">Code
+        Security</a> enabled, you should see all detected vulnerabilities in the <a target="_blank"
+                                                                                    href="https://app.datadoghq.com/security/appsec/vm/library?column=score&detection=runtime&order=desc">Vulns
+        Explorer</a>.</p>
 
 <details>
     <summary><h5>SQL Injection</h5></summary>

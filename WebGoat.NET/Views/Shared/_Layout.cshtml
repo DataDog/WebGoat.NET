@@ -11,6 +11,7 @@
         .sidebar {
             z-index: 1;
             position: fixed;
+            width: 300px;
             top: 0;
             right: 0;
             height: 100%;
@@ -33,7 +34,7 @@
         .resizer-button {
             position: fixed;
             top: 50%;
-            right: 250px; /* Adjust based on initial sidebar width */
+            right: 305px;
             transform: translate(70%, -50%);
             width: 20px;
             height: 20px;
@@ -44,7 +45,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000; /* Ensure the button is above other elements */
+            z-index: 1000;
         }
         .resizer-button::before {
             content: '⇔';
@@ -87,8 +88,8 @@
 
 <div class="sidebar" id="sidebar">
     <div class="resizer" id="resizer"></div>
+    <button id="reset-button" class="btn btn-secondary btn-sm" style="position: absolute; top: 10px; right: 10px;">Reset</button>
     <partial name="_DatadogInstruction"/>
-    
 </div>
 
 <div class="resizer-button" id="resizer-button"></div>
@@ -106,6 +107,7 @@
     const resizer = document.getElementById('resizer');
     const resizerButton = document.getElementById('resizer-button');
     const sidebar = document.getElementById('sidebar');
+    const resetButton = document.getElementById('reset-button');
     let isResizing = false;
 
     // Load saved sidebar width and scroll position
@@ -152,6 +154,24 @@
     // Save the scroll position
     sidebar.addEventListener('scroll', function() {
         localStorage.setItem('sidebarScrollTop', sidebar.scrollTop);
+    });
+
+    resetButton.addEventListener('click', function() {
+        // Reset sidebar width to initial value (e.g., 300px)
+        sidebar.style.width = '300px';
+        resizerButton.style.right = '305px';
+        localStorage.setItem('sidebarWidth', '300px');
+
+        // Reset scroll position
+        sidebar.scrollTop = 0;
+        localStorage.setItem('sidebarScrollTop', '0');
+
+        // Close all <details> elements and clear their state
+        const details = sidebar.querySelectorAll('details');
+        details.forEach(function(detail, index) {
+            detail.removeAttribute('open');
+            localStorage.removeItem('detail-' + index);
+        });
     });
 </script>
 
