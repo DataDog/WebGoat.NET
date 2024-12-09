@@ -1,0 +1,124 @@
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (1, 'Ergonomic Mesh Office Chair', 120.00, 'Features adjustable lumbar support and breathable mesh back to ensure comfort during long work hours.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (2, 'Convertible Standing Desk', 350.00, 'Easily switches between sitting and standing positions with a smooth electric lift mechanism.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (3, 'Modular Cubicle System', 750.00, 'Customizable panels and accessories to create personalized workspace configurations.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (4, 'Compact Corner Desk', 200.00, 'Maximizes corner space with built-in cable management and ample desktop area.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (5, 'Adjustable Monitor Arm', 50.00, 'Provides flexible positioning for dual monitors, enhancing ergonomic setup and desk space.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (6, 'Executive Leather Desk Chair', 250.00, 'Combines luxury and comfort with premium leather upholstery and high back support.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (7, 'L-Shaped Workstation Desk', 400.00, 'Offers expansive workspace with integrated storage solutions for organized productivity.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (8, 'Portable Laptop Cart', 100.00, 'Features wheels and adjustable shelves for flexible workstation mobility and storage.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (9, 'Height-Adjustable Sit-Stand Stool', 90.00, 'Encourages active seating with adjustable height settings for various tasks.');
+
+INSERT INTO Products (Id, Name, Price, Description) VALUES
+    (10, 'Filing Cabinet with Lock', 150.00, 'Secure storage solution with multiple drawers and a robust locking mechanism.');
+
+INSERT INTO BlogPosts (Id, Title, Content, CreatedAt, AuthorName) VALUES (1, 'The Key to a Productive Office: Functional and Stylish Furniture', '<p>Your office environment significantly impacts your productivity and mood. Choosing the right furniture is not just about functionality; it’s about creating a space that inspires and motivates you to do your best work.</p>
+    
+        <h2>Benefits of Well-Designed Office Furniture</h2>
+        <ul>
+            <li><strong>Enhances Comfort:</strong> Ergonomic furniture, such as adjustable chairs and desks, helps reduce physical strain and improves posture, allowing you to work comfortably for extended periods.</li>
+            <li><strong>Maximizes Efficiency:</strong> Thoughtfully designed furniture, like standing desks and modular workstations, streamlines your workflow and minimizes distractions.</li>
+            <li><strong>Supports Creativity:</strong> Aesthetic elements in furniture design, such as unique shapes and colors, can stimulate creativity and make the office feel more inviting.</li>
+        </ul>
+    
+        <h2>Must-Have Office Furniture Pieces</h2>
+        <ul>
+            <li><strong>Desks:</strong> Look for options with ample workspace, cable management, and adjustable heights to suit your needs.</li>
+            <li><strong>Chairs:</strong> Invest in ergonomic chairs that offer lumbar support, adjustable armrests, and breathable materials.</li>
+            <li><strong>Storage Solutions:</strong> Filing cabinets, bookshelves, and multi-functional storage benches keep your workspace organized and clutter-free.</li>
+            <li><strong>Accessories:</strong> Monitor arms, laptop stands, and task lighting enhance your setup, ensuring maximum comfort and productivity.</li>
+        </ul>
+    
+        <h2>Trends in Office Furniture Design</h2>
+        <ul>
+            <li><strong>Multi-Functionality:</strong> Furniture that serves multiple purposes, like desks with built-in storage or convertible standing desks, is increasingly popular.</li>
+            <li><strong>Eco-Friendly Materials:</strong> Sustainable options, such as bamboo desks or recycled plastic chairs, are not only good for the environment but also bring a natural aesthetic to your workspace.</li>
+            <li><strong>Compact Designs:</strong> Space-saving furniture is ideal for home offices or smaller workplaces, offering functionality without compromising style.</li>
+        </ul>
+    
+        <h2>Tips for Creating the Perfect Office Space</h2>
+        <ul>
+            <li><strong>Plan Your Layout:</strong> Ensure the furniture fits your space and allows for easy movement.</li>
+            <li><strong>Choose Durable Materials:</strong> High-quality materials last longer and provide better value for money.</li>
+            <li><strong>Focus on Ergonomics:</strong> Prioritize furniture that supports your physical health and comfort.</li>
+        </ul>
+    
+        <h2>Conclusion</h2>
+        <p>Whether you’re building a home office or refreshing a corporate workspace, the right furniture makes all the difference. It’s an investment in your comfort, productivity, and overall well-being. Explore our collection of functional and stylish office furniture to create a workspace that truly works for you!</p>', '2024-12-06 15:17:10', 'Administrator');
+INSERT INTO BlogPosts (Id, Title, Content, CreatedAt, AuthorName) VALUES (2, 'Elevate Your Workspace with Modern Office Furniture', '<p>Office furniture plays a crucial role in creating a productive and inspiring workspace. Whether you’re designing a home office, upgrading a corporate environment, or opening a co-working space, choosing the right furniture is key to ensuring comfort, efficiency, and style.</p>
+    
+        <h2>Why Office Furniture Matters</h2>
+        <ul>
+            <li><strong>Boosts Productivity:</strong> Ergonomic chairs and adjustable desks enhance comfort, helping you stay focused and efficient throughout the day.</li>
+            <li><strong>Reflects Professionalism:</strong> High-quality furniture like executive desks and sleek conference tables create a positive impression for clients and visitors.</li>
+            <li><strong>Improves Organization:</strong> Storage solutions like filing cabinets and modular shelving units keep your space clutter-free, promoting a sense of calm and order.</li>
+            <li><strong>Supports Health:</strong> Innovative options like standing desks and active seating encourage movement and proper posture, reducing health risks associated with prolonged sitting.</li>
+        </ul>
+    
+        <h2>Choosing the Right Office Furniture</h2>
+        <ul>
+            <li><strong>For Home Offices:</strong> Compact desks, multi-functional furniture, and comfortable chairs are ideal for small spaces.</li>
+            <li><strong>For Open Workspaces:</strong> Modular cubicles, acoustic privacy pods, and collaborative meeting tables balance individual and team needs.</li>
+            <li><strong>For Large Offices:</strong> Durable workstations, rolling carts, and tech-friendly conference tables cater to dynamic, tech-driven environments.</li>
+        </ul>
+    
+        <h2>Trends in Office Furniture</h2>
+        <ul>
+            <li><strong>Sustainability:</strong> Eco-friendly materials like bamboo and recycled metals are increasingly popular.</li>
+            <li><strong>Smart Features:</strong> Desks with built-in charging ports and adjustable lighting for personalized workspaces.</li>
+            <li><strong>Minimalist Designs:</strong> Clean lines and neutral colors for a modern, professional aesthetic.</li>
+        </ul>
+    
+        <h2>Invest in Your Workspace</h2>
+        <p>Quality office furniture is an investment in your comfort and productivity. By selecting the right pieces, you can transform your workspace into a place that inspires creativity, promotes health, and fosters success.</p>
+        <p>Explore our collection today and find the perfect furniture to match your needs and style!</p>', '2024-12-06 15:17:10', 'Administrator');
+INSERT INTO BlogPosts (Id, Title, Content, CreatedAt, AuthorName) VALUES (3, 'How to Design the Perfect Workspace with Modern Office Furniture', '<p>Designing the perfect workspace starts with choosing the right office furniture. The right pieces not only enhance the look of your office but also significantly improve productivity and well-being.</p>
+    
+        <h2>The Essentials of a Perfect Workspace</h2>
+        <ul>
+            <li><strong>Ergonomic Seating:</strong> A comfortable chair with adjustable height and lumbar support is a must for any workspace.</li>
+            <li><strong>Functional Desk:</strong> Choose a desk with enough surface area, storage options, and ergonomic adjustability to meet your needs.</li>
+            <li><strong>Smart Storage:</strong> Filing cabinets, shelves, and desk organizers help keep your workspace tidy and efficient.</li>
+            <li><strong>Lighting Solutions:</strong> Proper lighting, including adjustable task lamps, reduces eye strain and boosts productivity.</li>
+        </ul>
+    
+        <h2>Incorporating Style and Function</h2>
+        <p>Modern office furniture seamlessly blends functionality with aesthetics. Sleek designs, minimalist styles, and high-quality materials can make your workspace both productive and visually appealing. Consider integrating elements like:</p>
+        <ul>
+            <li><strong>Standing Desks:</strong> Promote movement and reduce health risks associated with prolonged sitting.</li>
+            <li><strong>Multi-Purpose Furniture:</strong> Items like convertible desks or storage benches maximize utility without sacrificing style.</li>
+            <li><strong>Personal Touches:</strong> Add character with stylish bookcases, vibrant rugs, or decorative desk accessories.</li>
+        </ul>
+    
+        <h2>Workspace Design Tips</h2>
+        <ul>
+            <li><strong>Plan the Layout:</strong> Ensure there’s enough space for movement and comfort, while keeping everything you need within easy reach.</li>
+            <li><strong>Use Neutral Tones:</strong> Neutral colors create a calming environment, while pops of color can add energy to your space.</li>
+            <li><strong>Invest in Quality:</strong> Durable furniture provides better long-term value and ensures a professional appearance.</li>
+        </ul>
+    
+        <h2>Conclusion</h2>
+        <p>Creating the perfect workspace doesn’t have to be overwhelming. With the right furniture, you can design a space that boosts your productivity, reflects your personality, and supports your overall well-being. Explore our wide range of modern office furniture to transform your workspace today!</p>', '2024-12-06 15:40:45', 'Administrator');
+
+
+INSERT INTO BlogComments (Id, PostId, Content, CreatedAt, AuthorName) VALUES (1, 3, 'Great insights on workspace design! What’s your top recommendation for ergonomic chairs for small offices?', '2024-12-09 10:51:49', 'Yves');
+INSERT INTO BlogComments (Id, PostId, Content, CreatedAt, AuthorName) VALUES (2, 3, 'Such a helpful guide thanks!', '2024-12-09 10:52:13', 'Collin');
+INSERT INTO BlogComments (Id, PostId, Content, CreatedAt, AuthorName) VALUES (3, 3, 'Another blog trying to sell <strong>overpriced furniture</strong> as the key to productivity. <em>Newsflash:</em> fancy chairs and desks won’t magically make people work harder.', '2024-12-09 10:52:51', 'Oppa');
+INSERT INTO BlogComments (Id, PostId, Content, CreatedAt, AuthorName) VALUES (4, 2, 'Minimalist designs are a customer favorite these days', '2024-12-09 10:53:57', 'Lore');
+INSERT INTO BlogComments (Id, PostId, Content, CreatedAt, AuthorName) VALUES (5, 2, 'What is your take on pairing neutral tones with bold accent pieces?', '2024-12-09 10:54:45', 'Tiphaine');
